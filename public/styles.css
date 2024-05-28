@@ -1,0 +1,23 @@
+body {
+  background-color: #00f;
+}
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 17px;
+}
+
+/* Scrollbar button color */
+::-webkit-scrollbar-button {
+    background: #aab8e4;
+}
+
+/* Scrollbar thumb color (Dark Gray) */
+::-webkit-scrollbar-thumb {
+    background: #777;
+}
+
+/* Scrollbar track color (Very Light Beige) */
+::-webkit-scrollbar-track {
+    background: #f5f0e6;
+}

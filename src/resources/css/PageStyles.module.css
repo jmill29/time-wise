@@ -1,0 +1,63 @@
+.error_popup,
+.page_section,
+.popup_container,
+.checkbox_container {
+  display: flex;
+}
+
+.error_popup,
+.page_section {
+  flex-flow: column;
+  align-items: center;
+}
+
+.to_top,
+.page_section {
+  color: #fff;
+  text-decoration: none;
+}
+
+.error_popup {
+  background-color: lightgreen; 
+  width: 30%;
+  height: 15%;
+  margin: 0 auto;
+  border: 1px solid #333;
+  max-width: 400px;
+}
+
+.error_message {
+  text-align: center;
+}
+
+.error_btn {
+  margin-bottom: 10px;
+}
+
+.page_section {
+  height: 48%;
+  min-height: 250px;
+  cursor: default;
+}
+
+.to_top {
+  cursor: pointer;
+}
+
+.popup_container {
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  top: 45%;
+}
+
+.checkbox_container {
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.checkbox_label {
+  margin-right: 10px;
+  margin-bottom: 5px;
+  color: orange;
+}

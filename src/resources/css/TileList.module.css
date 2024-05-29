@@ -1,0 +1,55 @@
+.outer_container_no_scrollbar,
+.outer_container_with_scrollbar {
+  height: 100%;
+  overflow: hidden;
+   min-height: 280px;
+}
+
+.outer_container_no_scrollbar {  /* 
+                                  Used to hold the scrollbar element,
+                                  for the purposes of hiding the scrollbar
+                                  but still allowing users to scroll.
+                                */
+  width: 100%;
+  margin-right: 60px;
+}
+
+.outer_container_with_scrollbar { /*
+                                    Modified .outer_container_no_scrollbar
+                                    to show the scrollbar for a more intuitive
+                                    user experience.
+                                  */
+  width: fit-content;
+  min-width: 587px;
+}
+
+.scrollbar_container_no_scrollbar,
+.scrollbar_container_with_scrollbar {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 60px;
+}
+
+.scrollbar_container_no_scrollbar { /*
+                                      Used for the div element that contains the scrollbar.
+                                      Hides the scrollbar if the user wishes to do so (for
+                                      aesthetic purposes).
+                                    */
+  box-sizing: content-box;
+}
+
+.scrollbar_container_with_scrollbar { /*
+                                        Used for the div element that contains the scrollbar.
+                                        Displays the scrollbar if the user wishes to do so (for
+                                        a more intuitive user experience).
+                                      */
+  box-sizing: border-box;
+}
+
+.flex_container {
+  max-height: 80%;
+  display: flex;
+  justify-content: center;
+}
+

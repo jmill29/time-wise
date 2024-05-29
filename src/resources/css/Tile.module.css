@@ -1,0 +1,49 @@
+.flex_container,
+.tile_container,
+.delete_btn {
+  display: flex;
+}
+
+.tile_container,
+.delete_btn {
+  align-items: center;
+}
+
+.delete_btn,
+.delete_img {
+  margin: 0;
+}
+
+.flex_container {
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.tile_container {
+  justify-content: space-between;
+  width: 500px;
+}
+
+.tile_heading {
+  margin-top: 5px;
+  color: #ddd;
+}
+
+.tile_info {
+  color: #aaa;
+}
+
+.delete_btn {
+  padding: 0;
+  background-color: white;
+  width: fit-content;
+  height: fit-content;
+  min-width: 40px;
+  min-height: 31px;
+}
+
+.delete_img {
+  width: 20px;
+  height: auto;
+  padding: 0 10px 5px 10px;
+}

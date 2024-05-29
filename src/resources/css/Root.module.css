@@ -1,0 +1,32 @@
+.flex_body {
+  display: flex;
+  justify-content: space-between;
+  background-color: #00008b;
+  align-items: center;
+}
+
+.nav_bar {
+  height: 5%;
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+.nav_link {
+  color: #ffc0cb;
+  margin: 10px 5px;
+}
+
+.nav_link:hover {
+  color: #ff4500;
+}
+
+.home_btn {
+  text-align: center;
+  font-family: 'Dancing Script';
+  margin: 20px 40px 20px 0;
+  color: #fff;
+}
+
+.home_btn_parent {
+  text-decoration: none;
+}

@@ -30,6 +30,7 @@
 - **Scroll to Top**: The subheading at the top of each list page ('Contacts' or 'Appointments') serves as a button to scroll to the top of the respective list. This provides quick and easy navigation within the lists.
 
   ![Scroll to Top Button Location](./resources/img/scroll-to-top.png)
+  <br>
   *The 'Contacts' or 'Appointments' subheadings serve as the Scroll to Top button.*
 
 ## Getting Started

@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import styles from "../../resources/css/ContactPicker.module.css";
 
+/*
+  Renders a select input used for selecting a contact when creating
+  a new appointment
+*/
 export const ContactPicker = ({ value, onChange }) => {
   const { contacts } = useContext(AppContext);
   return (

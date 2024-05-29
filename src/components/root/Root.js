@@ -1,11 +1,18 @@
 import {  Outlet, NavLink } from "react-router-dom";
 import styles from "../../resources/css/Root.module.css";
 
+/*
+  Used for storing the URLs used by the React Router
+*/
 export const ROUTES = {
     CONTACTS: "/contacts",
     APPOINTMENTS: "/appointments",
-  };
+};
 
+/*
+  Renders the webpage heading and nav-bar, also acts as the Root 
+  of the page (rendering all other React components as its children)
+*/
 function Root() {
     return (
         <>

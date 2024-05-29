@@ -1,6 +1,9 @@
 import React, { createContext, useReducer } from 'react';
 import { findIndexById } from '../resources/utils/utils';
 
+/*
+  App Reducer used to manage global state
+*/
 export const AppReducer = (state, action) => {
   let index;
   switch (action.type) {
@@ -13,12 +16,13 @@ export const AppReducer = (state, action) => {
               contacts: [
                 ...state.contacts.slice(0, i),
                 {
-                  id: state.contacts.length,
+                  id: state.idCounter.contacts,
                   ...action.payload
                 },
                 ...state.contacts.slice(i, state.contacts.length)
               ],
-              currId: i
+              currId: i,
+              idCounter: {...state.idCounter, contacts: state.idCounter.contacts + 1}
             };
           }
         }
@@ -27,20 +31,22 @@ export const AppReducer = (state, action) => {
           contacts: [
             ...state.contacts,
             {
-              id: state.contacts.length,
+              id: state.idCounter.contacts,
               ...action.payload
             }
           ],
-          currId: state.contacts.length
+          currId: state.contacts.length,
+          idCounter: {...state.idCounter, contacts: state.idCounter.contacts + 1}
         };
       } else {
         return {
           ...state,
           contacts: [{
-            id: 0,
+            id: state.idCounter.contacts,
             ...action.payload
           }],
-          currId: 0
+          currId: 0,
+          idCounter: {...state.idCounter, contacts: state.idCounter.contacts + 1}
         };
       }
 
@@ -63,12 +69,13 @@ export const AppReducer = (state, action) => {
               appointments: [
                 ...state.appointments.slice(0, i),
                 {
-                  id: state.appointments.length,
+                  id: state.idCounter.appointments,
                   ...action.payload
                 },
                 ...state.appointments.slice(i, state.appointments.length)
               ],
-              currId: i
+              currId: i,
+              idCounter: {...state.idCounter, appointments: state.idCounter.appointments + 1}
             };
           }
         }
@@ -77,20 +84,22 @@ export const AppReducer = (state, action) => {
           appointments: [
             ...state.appointments,
             {
-              id: state.appointments.length,
+              id: state.idCounter.appointments,
               ...action.payload
             }
           ],
-          currId: state.appointments.length
+          currId: state.appointments.length,
+          idCounter: {...state.idCounter, appointments: state.idCounter.appointments + 1}
         };
       } else {
         return {
           ...state,
           appointments: [{
-            id: 0,
+            id: state.idCounter.appointments,
             ...action.payload
           }],
-          currId: 0
+          currId: 0,
+          idCounter: {...state.idCounter, appointments: state.idCounter.appointments + 1}
         };
       }
 
@@ -116,13 +125,17 @@ export const AppReducer = (state, action) => {
 };
 
 const initialState = {
-  contacts: [],
-  appointments: [],
-  currId: -1
+  contacts: [], // Used to store contacts list
+  appointments: [], // Used to store appointments list
+  currId: -1, // Used to store index of most recently added element
+  idCounter: {contacts: 0, appointments: 0} // Used to keep track of the indexes
+                                            // That have been assigned to elements.
 };
 
+// App Context used to access global state
 export const AppContext = createContext();
 
+// App Provider used to render AppContext element and React app
 export const AppProvider = props => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 

@@ -2,8 +2,13 @@ import React, { useEffect } from "react";
 import {Tile} from "../tile/Tile";
 import styles from "../../resources/css/TileList.module.css";
 
+/*
+  Renders list of Tile components to display the contact or appointment
+  information
+*/
 export const TileList = ({ data, handleDelete, newElId, showScrollbar }) => {
-
+  
+  // Used to mark the last element added so the page scrolls into view of that element when it's added
   useEffect(() => {
     let target;
     if (newElId === 0) {
@@ -31,21 +36,25 @@ export const TileList = ({ data, handleDelete, newElId, showScrollbar }) => {
                 name: '',
                 description: {}
               };
-              for (let key in el) {
+              for (let key in el) { // Formats the elements of the contacts (or appointments) list
+                                    // so it is displayed correctly.
                 if (key === 'name') {
                   formattedElement[key] = el[key];
                 } else if (key !== 'id') {
                   formattedElement['description'][key] = el[key];
                 }
               }
-              let includesOthers = false;
+              let includesOthers = false; // Used to determine if the appointment includes only the user
+                                          // or the user and somebody else. This is done so it is displayed
+                                          // properly.
               if (el.contact) {
                 if (el.contact.id !== '') {
                   includesOthers = true;
                 }
               }
               return (
-                <div id={(index === 0) ? 'start':
+                <div id={(index === 0) ? 'start': // ID is used to mark the most recently added element so the 
+                                                  // page scrolls into view of it when it is added.
                   ((index === newElId) ? 'end': '')
                 }>
                   <Tile data={formattedElement} handleDelete={() => handleDelete(el.id)}

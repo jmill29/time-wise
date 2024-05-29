@@ -1,6 +1,9 @@
 import React from "react";
 import styles from "../../resources/css/FormStyles.module.css";
 
+/*
+  Renders a form used for adding a new contact
+*/
 export const ContactForm = ({ localStates, stateSetters, handleSubmit }) => {
   return (
     <>

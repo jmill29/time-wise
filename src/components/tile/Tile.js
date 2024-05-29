@@ -24,6 +24,7 @@ export const Tile = ({ data, handleDelete, includesOthers }) => {
             const label = getLabel(el);
             return (
               <p className={styles.tile_info}>{label}: {
+                // Determine how to display the information based on what is being displayed
                 el === 'contact' ? `You${!includesOthers ? '': ` and ${data.description[el].name}`}`: 
                 (el === 'date' ? `${data.description[el].toDateString()}`:
                                 `${data.description[el]}`) 
@@ -31,7 +32,8 @@ export const Tile = ({ data, handleDelete, includesOthers }) => {
             )
           })}
         </div>
-        <button onClick={handleDelete} className={styles.delete_btn}>
+        <button onClick={handleDelete} className={styles.delete_btn}> { /* Used for displaying the delete
+                                                                          button */ }
           <img src={trashClosed} className={styles.delete_img}
             onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} />
         </button>

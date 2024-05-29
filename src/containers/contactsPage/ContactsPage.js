@@ -8,24 +8,28 @@ import { getErrorMessage } from "../../resources/utils/utils";
 
 export const ContactsPage = ({ handleAnchorClick, showScrollbar, handleCheckboxChange }) => {
   const { dispatch, contacts, currId } = useContext(AppContext);
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState(false);
-  const [initialized, setInitialized] = useState(false);
-  //const [showScrollbar, setShowScrollbar] = useState(false);
+  
+  // The following states are used to hold contact information prior to adding
+  // the contact to the contacts list.
+  const [name, setName] = useState(''); // State used for storing name of contact
+  const [phone, setPhone] = useState(''); // State used for storing contact's phone number
+  const [email, setEmail] = useState(''); // State used for storing contact's email address
+  const [error, setError] = useState(false); // State used for storing error status
+  const [initialized, setInitialized] = useState(false); // State used for storing page 
+                                                         // initialization status
 
+  // Used for resetting current ID (ID of most recently added element),
+  // so the page doesn't scroll when navigating to a different page.
   useEffect(() => {
     dispatch({
       type: 'RESET_CURRID'
     });
     setInitialized(true);
   }, []);
-
+  
+  /*
+    Handles deletion of contacts
+  */
   const handleDelete = id => {
     dispatch({
       type: 'REMOVE_CONTACT',
@@ -34,10 +38,14 @@ export const ContactsPage = ({ handleAnchorClick, showScrollbar, handleCheckboxC
       }
     });
   }
-
+  
+  /*
+    Handles contact form submission
+  */
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
+    // Checks to see if contact already exists
     let contactExists = false;
     for (let contact of contacts) {
       if (contact.name === name) {
@@ -45,7 +53,9 @@ export const ContactsPage = ({ handleAnchorClick, showScrollbar, handleCheckboxC
         break;
       }
     }
-
+    
+    // If contact DOES NOT already exist, then the new contact
+    // is added to the list of contacts.
     if (!contactExists) {
       dispatch({
         type: 'ADD_CONTACT',
@@ -58,14 +68,19 @@ export const ContactsPage = ({ handleAnchorClick, showScrollbar, handleCheckboxC
       for (let setterFunc of [setName, setPhone, setEmail]) {
         setterFunc('');
       }
+
+      // If the submission was successfully but the 'error' state is already set to TRUE,
+      // the 'error' state is then set to FALSE.
       if (error) {
         setError(false);
       }
     } else {
+      // If the contact DOES already exist, the 'error' state is set to true.
       setError(true);
     }
   };
-
+  
+  // Handles invalid user input
   const handleInvalid = target => {
     if (target.validity.patternMismatch) {
       target.setCustomValidity(getErrorMessage(target.id));
@@ -74,31 +89,34 @@ export const ContactsPage = ({ handleAnchorClick, showScrollbar, handleCheckboxC
     }
   }
   
+  // Handles contact name input change
   const handleNameChange = ({ target }) => {
     setName(target.value);
     handleInvalid(target);
   };
-
+  
+  // Handles contact phone number input change
   const handlePhoneChange = ({ target }) => {
     setPhone(target.value);
     handleInvalid(target);
   };
-
+  
+  // Handles contact email address input change
   const handleEmailChange = ({ target }) => {
     setEmail(target.value);
     handleInvalid(target);
   };
-
-  /*const handleCheckboxChange = ({ target }) => {
-    setShowScrollbar(target.checked);
-  }*/
-
+  
+  // Packages the local states into one object to be passed into
+  // the TileList component.
   const localStates = {
     name,
     phone,
     email
   };
-
+  
+  // Packages the local state setter functions into one object to 
+  // be passed into the TileList component.
   const stateSetters = {
     handleNameChange,
     handlePhoneChange,

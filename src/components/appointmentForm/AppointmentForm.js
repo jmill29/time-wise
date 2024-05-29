@@ -1,15 +1,11 @@
 import React from "react";
 import { ContactPicker } from "../contactPicker/ContactPicker";
-import { getTodayString, getCurrTimeString } from "../../resources/utils/utils";
+import { getTodayString } from "../../resources/utils/utils";
 import styles from "../../resources/css/FormStyles.module.css";
 
-/*const getTodayString = () => {
-  const [month, day, year] = new Date()
-    .toLocaleDateString("en-US")
-    .split("/");
-  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-};*/
-
+/*
+  Renders a form used for adding a new appointment
+*/
 export const AppointmentForm = ({ localStates, stateSetters, handleSubmit }) => {
   let contactName = String(localStates.contact.id);
   const apptName = localStates.name || '';
